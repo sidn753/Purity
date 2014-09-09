@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Purity</string>
+    <string name="app_unlock">"Slide to access applications\n&#8594;"</string>
+    <string name="app_empty_string"></string>
+</resources>
