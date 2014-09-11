@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import me.rubrumlapidem.purity.R;
+import org.purity.R;
 
 import android.app.Activity;
 import android.app.FragmentManager;

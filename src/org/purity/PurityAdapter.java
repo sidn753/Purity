@@ -2,7 +2,8 @@ package org.purity;
 
 import java.util.List;
 
-import me.rubrumlapidem.purity.R;
+import org.purity.R;
+
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;

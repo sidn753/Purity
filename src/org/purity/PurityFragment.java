@@ -1,6 +1,7 @@
 package org.purity;
 
-import me.rubrumlapidem.purity.R;
+import org.purity.R;
+
 import android.app.Fragment;
 import android.app.WallpaperManager;
 import android.os.Bundle;
