@@ -13,6 +13,7 @@
         <activity
             android:name=".Purity"
             android:label="@string/appName"
+            android:theme="@style/appTheme"
             android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
