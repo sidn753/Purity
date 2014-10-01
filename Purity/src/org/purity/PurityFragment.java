@@ -36,16 +36,24 @@ public class PurityFragment extends Fragment implements SensorEventListener {
 	SensorManager sensorManager;
 
 	ImageView background;
-	Sensor sensor;
+
+	Sensor accelerometer;
+	Sensor magnetometer;
+
+	float[] gravity;
+	float[] geomagnetic;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		wallpaperManager = WallpaperManager.getInstance(getActivity());
 		sensorManager = (SensorManager)getActivity().getSystemService(Context.SENSOR_SERVICE);
-		sensor = (Sensor)sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
 		View rootView = inflater.inflate(R.layout.app_main_fragment, container, false);
 		background = (ImageView)rootView.findViewById(R.id.appBackground);
+
+		accelerometer = (Sensor)sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		magnetometer = (Sensor)sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
 		return rootView;
 	}
 
@@ -53,7 +61,8 @@ public class PurityFragment extends Fragment implements SensorEventListener {
 	public void onResume() {
 		super .onResume();
 		background.setImageDrawable(wallpaperManager.getDrawable());
-		sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+		sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+		sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_FASTEST);
 	}
 
 	@Override
@@ -64,18 +73,23 @@ public class PurityFragment extends Fragment implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		final float alpha = 0.8f;
+		if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+			gravity = event.values;
+		if(event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+			geomagnetic = event.values;
 
-		float[] gravity = new float[2];
-		gravity[0] = alpha * gravity[0] + (1 - alpha) * event.values[0];
-		gravity[1] = alpha * gravity[1] + (1 - alpha) * event.values[1];
+		if((gravity != null) && (geomagnetic != null)) {
+			float[] R = new float[9];
+			float[] I = new float[9];
 
-		float[] linear_acceleration = new float[2];
-		linear_acceleration[0] = event.values[0] - gravity[0];
-		linear_acceleration[1] = event.values[1] - gravity[1];
+			if(SensorManager.getRotationMatrix(R, I, gravity, geomagnetic)) {
+				float[] orientation = new float[3];
+				SensorManager.getOrientation(R, orientation);
 
-		background.setTranslationX(linear_acceleration[0] * 4.0f);
-		background.setTranslationY(linear_acceleration[1] * -4.0f);
+				background.setTranslationX(orientation[2] * 12.0f);
+				background.setTranslationY(orientation[1] * 12.0f);
+			}
+		}
 	}
 
 	@Override
