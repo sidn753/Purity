@@ -7,9 +7,9 @@
         android:targetSdkVersion="20"/>
     <application
         android:allowBackup="true"
-        android:icon="@android:color/transparent"
-        android:label="@string/appName"
-        android:theme="@style/appTheme">
+        android:icon="@drawable/ic_launcher"
+        android:logo="@drawable/ic_launcher_play"
+        android:label="@string/appName">
         <activity
             android:name=".Purity"
             android:label="@string/appName"

@@ -1,5 +1,4 @@
 <resources>
     <string name="appName">Purity</string>
     <string name="appUnlock">"Slide to access applications\n&#8594;"</string>
-    <string name="appBackgroundContentDescription">Background</string>
 </resources>
