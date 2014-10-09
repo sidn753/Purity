@@ -24,6 +24,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.purity.list.EntryItem;
+import org.purity.list.Item;
+import org.purity.list.SectionItem;
+
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -65,7 +69,7 @@ public class Purity extends Activity {
 		this.appsList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View parent, int position, long id) {
-				ApplicationInfo app = (ApplicationInfo) adapter.getItemAtPosition(position);
+				ApplicationInfo app = ((EntryItem) adapter.getItemAtPosition(position)).getApplicationInfo();
 				drawerLayout.closeDrawers();
 				startActivity(packageManager.getLaunchIntentForPackage(app.packageName));
 			}
@@ -74,7 +78,7 @@ public class Purity extends Activity {
 		this.appsList.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> adapter, View parent, int position, long id) {
-				ApplicationInfo app = (ApplicationInfo) adapter.getItemAtPosition(position);
+				ApplicationInfo app = ((EntryItem) adapter.getItemAtPosition(position)).getApplicationInfo();
 				Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + app.packageName));
 				drawerLayout.closeDrawers();
 				startActivity(intent);
@@ -94,24 +98,46 @@ public class Purity extends Activity {
 	public void onStart() {
 		super .onStart();
 
-		List<ApplicationInfo> apps = new ArrayList<ApplicationInfo>();
+		List<Item> items = new ArrayList<Item>();
 
-		List<ApplicationInfo> appsNotSort = this.packageManager.getInstalledApplications(0);
-		for(ApplicationInfo app : appsNotSort) {
+		List<ApplicationInfo> apps = this.packageManager.getInstalledApplications(0);
+		for(ApplicationInfo app : apps) {
 			if(this.packageManager.getLaunchIntentForPackage(app.packageName) != null) {
-				apps.add(app);
+				items.add(new EntryItem(app));
 			}
 		}
 
-		Collections.sort(apps, new Comparator<ApplicationInfo>() {
+		Collections.sort(items, new Comparator<Item>() {
 			private Collator collator = Collator.getInstance();
 
 			@Override
-			public int compare(ApplicationInfo app0, ApplicationInfo app1) {
+			public int compare(Item item0, Item item1) {
+				ApplicationInfo app0 = ((EntryItem)item0).getApplicationInfo();
+				ApplicationInfo app1 = ((EntryItem)item1).getApplicationInfo();
 				return collator.compare(app0.loadLabel(packageManager), app1.loadLabel(packageManager));
 			}
 		});
 
-		this.appsList.setAdapter(new PurityAdapter(this, R.layout.app_row, apps));
+		items.add(0, new SectionItem("#"));
+		items.add(3, new SectionItem("A"));
+		items.add(8, new SectionItem("B"));
+		items.add(11, new SectionItem("C"));
+		items.add(17, new SectionItem("D"));
+		items.add(20, new SectionItem("E"));
+		items.add(23, new SectionItem("F"));
+		items.add(25, new SectionItem("G"));
+		items.add(36, new SectionItem("H"));
+		items.add(39, new SectionItem("K"));
+		items.add(42, new SectionItem("L"));
+		items.add(44, new SectionItem("M"));
+		items.add(49, new SectionItem("P"));
+		items.add(52, new SectionItem("Q"));
+		items.add(55, new SectionItem("R"));
+		items.add(57, new SectionItem("S"));
+		items.add(62, new SectionItem("T"));
+		items.add(66, new SectionItem("V"));
+		items.add(69, new SectionItem("Y"));
+
+		this.appsList.setAdapter(new PurityAdapter(this, R.layout.app_row, items));
 	}
 }
