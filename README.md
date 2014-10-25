@@ -9,16 +9,7 @@ All this starts from observation focused on the wallpaper. For me a wallpaper is
 After a few prototypes of this application, one of those that it proved to be the most likely to continue the project. So I took the decision to openly reveal this application :confetti_ball: :balloon: :tada: :balloon: :confetti_ball: I dear to myself :revolving_hearts: hanging some time before you to share it, hoping you like it.
 
 ####The Application
-######Home
-<img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_0.png" alt="Home" width="360" height="640"/>
-
-######Applications List
-<img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_1.png" alt="Home" width="360" height="640"/>
-
-######Item Long Click
-<img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_2.png" alt="Home" width="360" height="640"/>
-
-<img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_3.png" alt="Home" width="360" height="640"/>
+<img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_0.png" alt="Home" width="190" height="320"/><img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_1.png" alt="Home" width="190" height="320"/><img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_2.png" alt="Home" width="190" height="320"/><img src="https://raw.githubusercontent.com/axelmarchand/Purity/master/Screenshots/screenshot_3.png" alt="Home" width="190" height="320"/>
 
 *Made in France :fr:*
 :clap:
