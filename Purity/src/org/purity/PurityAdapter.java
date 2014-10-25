@@ -66,7 +66,7 @@ public class PurityAdapter extends ArrayAdapter<Item> {
 				v.setLongClickable(false);
 
 				TextView title = (TextView) v.findViewById(R.id.appSectionLabel);
-				title.setText(section.getTitle());
+				title.setText(String.valueOf(section.getTitle()));
 			}else {
 				EntryItem entry = (EntryItem) item;
 				ApplicationInfo app = entry.getApplicationInfo();

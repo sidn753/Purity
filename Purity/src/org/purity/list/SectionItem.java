@@ -19,13 +19,13 @@
 package org.purity.list;
 
 public class SectionItem implements Item {
-	private String title;
+	private char title;
 
-	public SectionItem(String title) {
+	public SectionItem(char title) {
 		this.title = title;
 	}
 
-	public String getTitle() {
+	public char getTitle() {
 		return this.title;
 	}
 

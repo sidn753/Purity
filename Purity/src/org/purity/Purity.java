@@ -118,25 +118,21 @@ public class Purity extends Activity {
 			}
 		});
 
-		items.add(0, new SectionItem("#"));
-		items.add(3, new SectionItem("A"));
-		items.add(8, new SectionItem("B"));
-		items.add(11, new SectionItem("C"));
-		items.add(17, new SectionItem("D"));
-		items.add(20, new SectionItem("E"));
-		items.add(23, new SectionItem("F"));
-		items.add(25, new SectionItem("G"));
-		items.add(36, new SectionItem("H"));
-		items.add(39, new SectionItem("K"));
-		items.add(42, new SectionItem("L"));
-		items.add(44, new SectionItem("M"));
-		items.add(49, new SectionItem("P"));
-		items.add(52, new SectionItem("Q"));
-		items.add(55, new SectionItem("R"));
-		items.add(57, new SectionItem("S"));
-		items.add(62, new SectionItem("T"));
-		items.add(66, new SectionItem("V"));
-		items.add(69, new SectionItem("Y"));
+		char last = 0;
+		for(int i = 0; i < items.size(); i++) {
+			EntryItem item = (EntryItem) items.get(i);
+			char startWith = item.getApplicationInfo().loadLabel(packageManager).charAt(0);
+			if(startWith != last) {
+				if(Character.isDigit(startWith)) {
+					if(!Character.isDigit(last)) {
+						items.add(i, new SectionItem('#'));
+					}
+				}else {
+					items.add(i, new SectionItem(startWith));
+				}
+				last = startWith;
+			}
+		}
 
 		this.appsList.setAdapter(new PurityAdapter(this, R.layout.app_row, items));
 	}
