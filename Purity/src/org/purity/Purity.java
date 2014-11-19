@@ -1,5 +1,5 @@
 /*
- * Purity.java
+ Purity.java
  * Copyright (C) 2014  Marchand Axel
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,10 @@ public class Purity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super .onCreate(savedInstanceState);
 		setContentView(R.layout.app_layout);
+
+		if(android.os.Build.VERSION.SDK_INT >= 21) {
+			this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+		}
 
 		this.fragmentManager = getFragmentManager();
 		this.fragmentManager.beginTransaction().replace(R.id.appFrameLayout, new PurityFragment()).commit();
