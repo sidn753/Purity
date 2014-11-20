@@ -93,7 +93,16 @@ public class Purity extends Activity {
 		this.drawerLayout.setDrawerListener(new ActionBarDrawerToggle(this, drawerLayout, android.R.color.transparent, android.R.string.untitled, android.R.string.untitled) {
 			public void onDrawerSlide(View drawerView, float slideOffset) {
 				float moveFactor = drawerLayout.getWidth() * slideOffset / 4;
-				frameLayout.setTranslationX(moveFactor);
+				float alphaFactor = 1.0f - slideOffset;
+
+				View appTitle = frameLayout.findViewById(R.id.appTitle);
+				View appSubTitle = frameLayout.findViewById(R.id.appSubTitle);
+
+				appTitle.setTranslationX(moveFactor);
+				appSubTitle.setTranslationX(moveFactor);
+
+				appTitle.setAlpha(alphaFactor);
+				appSubTitle.setAlpha(alphaFactor);
 			}
 		});
 	}

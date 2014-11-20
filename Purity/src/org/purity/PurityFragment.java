@@ -19,26 +19,14 @@
 package org.purity;
 
 import android.app.Fragment;
-import android.app.WallpaperManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class PurityFragment extends Fragment {
-	private WallpaperManager wallpaperManager;
-	private View rootView;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		wallpaperManager = WallpaperManager.getInstance(getActivity());
-		rootView = inflater.inflate(R.layout.app_main_fragment, container, false);
-		return rootView;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		rootView.setBackground(wallpaperManager.getDrawable());
+		return inflater.inflate(R.layout.app_main_fragment, container, false);
 	}
 }
